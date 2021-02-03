@@ -1,5 +1,6 @@
-package com.kamann.client;
+package com.kamann.client.entitiy;
 
+import com.kamann.employee.Employee;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,26 +9,29 @@ import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Client {
+public class Address {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  private String firstname;
-  private String lastname;
-  private String login;
-  private String pesel;
-  private String phoneNumber;
-  private String email;
+  private String cityName;
+  private String streetName;
+  private String streetNumber;
+  private int local;
+  private String postalCode;
 
-  @OneToOne(targetEntity = Address.class)
-  private Address address;
+  @OneToOne(mappedBy = "address")
+  private Client client;
 
+  @OneToOne(mappedBy = "address")
+  private Employee employee;
 
 }
