@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @RequiredArgsConstructor
 @Service
 public class UserCreateServiceImpl implements UserCreateService {
@@ -21,9 +23,8 @@ public class UserCreateServiceImpl implements UserCreateService {
     @Override
     public UserDto save(UserDto userDto) {
         userDto.setPassword(encoder.encode(userDto.getPassword()));
-//todo:    userDto.setCreatedAt(new Date()); Add date of creation account
         User beforeSaveUser = userMapper.userDtoToUser(userDto);
-        User afterSaveUser = userRepository.save(beforeSaveUser);
-        return userMapper.userToUserDto(afterSaveUser);
+        User savedUser = userRepository.save(beforeSaveUser);
+        return userMapper.userToUserDto(savedUser);
     }
 }

@@ -16,7 +16,7 @@ public class UserDto {
 
     private String pesel;
 
-    private String name;
+    private String firstName;
 
     private String lastname;
 

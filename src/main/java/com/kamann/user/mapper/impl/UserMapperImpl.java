@@ -3,14 +3,16 @@ package com.kamann.user.mapper.impl;
 import com.kamann.user.domain.User;
 import com.kamann.user.dto.UserDto;
 import com.kamann.user.mapper.UserMapper;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserMapperImpl implements UserMapper {
     @Override
     public User userDtoToUser(UserDto userDto) {
         return User.builder()
                 .id(userDto.getId())
                 .pesel(userDto.getPesel())
-                .firstName(userDto.getName())
+                .firstName(userDto.getFirstName())
                 .lastname(userDto.getLastname())
                 .address(userDto.getAddress())
                 .email(userDto.getEmail())
@@ -23,7 +25,7 @@ public class UserMapperImpl implements UserMapper {
         return UserDto.builder()
                 .id(user.getId())
                 .pesel(user.getPesel())
-                .name(user.getFirstName())
+                .firstName(user.getFirstName())
                 .lastname(user.getLastname())
                 .address(user.getAddress())
                 .email(user.getEmail())
