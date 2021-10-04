@@ -3,38 +3,23 @@ package com.kamann.user.mapper.impl;
 import com.kamann.user.domain.User;
 import com.kamann.user.dto.UserDto;
 import com.kamann.user.mapper.UserMapper;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class UserMapperImpl implements UserMapper {
+
+    private final ModelMapper modelMapper;
+
     @Override
     public User userDtoToUser(UserDto userDto) {
-        return User.builder()
-                .id(userDto.getId())
-                .pesel(userDto.getPesel())
-                .firstName(userDto.getFirstName())
-                .lastname(userDto.getLastname())
-                .address(userDto.getAddress())
-                .email(userDto.getEmail())
-                .password(userDto.getPassword())
-                .build();
+        return modelMapper.map(userDto, User.class);
     }
 
     @Override
     public UserDto userToUserDto(User user) {
-        return UserDto.builder()
-                .id(user.getId())
-                .pesel(user.getPesel())
-                .firstName(user.getFirstName())
-                .lastname(user.getLastname())
-                .address(user.getAddress())
-                .email(user.getEmail())
-                .password(user.getPassword())
-                .build();
-    }
-
-    @Override
-    public <B, R> R remapObjects(B base, R result) {
-        return result;
+        return modelMapper.map(user, UserDto.class);
     }
 }

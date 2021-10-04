@@ -9,5 +9,4 @@ public interface UserMapper {
         UserDto userToUserDto(User user);
         //todo: List<UserDto> UserListToUserDtoList(List<User>
 
-        <B, R> R remapObjects(B base, R result);
 }

@@ -21,7 +21,7 @@ public class UserCreateServiceImpl implements UserCreateService {
 
 
     @Override
-    public UserDto save(UserDto userDto) {
+    public UserDto execute(UserDto userDto) {
         userDto.setPassword(encoder.encode(userDto.getPassword()));
         User beforeSaveUser = userMapper.userDtoToUser(userDto);
         User savedUser = userRepository.save(beforeSaveUser);
