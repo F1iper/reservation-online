@@ -9,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-
 @RequiredArgsConstructor
 @Service
 public class UserCreateServiceImpl implements UserCreateService {
