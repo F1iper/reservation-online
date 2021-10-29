@@ -20,5 +20,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
-    //todo: added User entity + DTO, added repo connection, service layer for the user creation
 }
