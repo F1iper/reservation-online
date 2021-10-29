@@ -13,5 +13,7 @@ public class AppointmentDto {
 
     private Long id;
 
+    private String name;
+
     private LocalDate date;
 }

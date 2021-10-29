@@ -23,7 +23,7 @@ public class AppointmentAsListServiceImpl implements AppointmentAsListService {
         List<Appointment> theList = appointmentRepository.findAll();
         return theList
                 .stream()
-                .map(appointmentDto -> modelMapper.map(theList, AppointmentDto.class))
+                .map(appointment -> modelMapper.map(appointment, AppointmentDto.class))
                 .collect(Collectors.toList());
     }
 }

@@ -20,6 +20,8 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //todo: auto (?)
     private Long id;
 
+    private String name;
+
     private LocalDate date;
 
     //todo: one to one -> user
