@@ -1,7 +1,9 @@
 package com.kamann.user.controller;
 
 import com.kamann.exception.ThereIsNoUserException;
+import com.kamann.user.domain.User;
 import com.kamann.user.dto.UserDto;
+import com.kamann.user.mapper.UserMapper;
 import com.kamann.user.repository.UserRepository;
 import com.kamann.user.service.UserCreateService;
 import com.kamann.user.service.UserDeleteService;
@@ -12,7 +14,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -24,10 +29,18 @@ public class UserController {
     private final UserCreateService userCreateService;
     private final UserDeleteService userDeleteService;
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
+
 
     @GetMapping("/{id}")
-    public UserDto getUser(@PathVariable Long id) throws ThereIsNoUserException {
-        return userGetService.getUserById(id);
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long id) throws ThereIsNoUserException {
+        if(userRepository.existsById(id)) {
+            return new ResponseEntity<>(userGetService.getUserById(id), HttpStatus.FOUND);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+
     }
 
     @GetMapping("/all")

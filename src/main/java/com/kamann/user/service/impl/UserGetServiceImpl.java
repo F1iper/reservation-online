@@ -17,7 +17,7 @@ public class UserGetServiceImpl implements UserGetService {
 
     @Override
     public UserDto getUserById(Long id) {
-        User userFromDB = modelMapper.map(userRepository.findById(id), User.class);
+        User userFromDB = modelMapper.map(userRepository.getOne(id), User.class);
         return modelMapper.map(userFromDB, UserDto.class);
     }
 }
