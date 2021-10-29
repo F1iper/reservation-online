@@ -4,7 +4,7 @@ import com.kamann.appointment.dto.AppointmentDto;
 
 import java.util.List;
 
-public interface GetAppointmentAsListService {
+public interface AppointmentAsListService {
 
     List<AppointmentDto> getAppointmentAsList();
 }
