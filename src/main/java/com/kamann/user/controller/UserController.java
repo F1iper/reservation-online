@@ -1,9 +1,7 @@
 package com.kamann.user.controller;
 
-import com.kamann.exception.ThereIsNoUserException;
-import com.kamann.user.domain.User;
+import com.kamann.exception.ResourceNotFoundException;
 import com.kamann.user.dto.UserDto;
-import com.kamann.user.mapper.UserMapper;
 import com.kamann.user.repository.UserRepository;
 import com.kamann.user.service.UserCreateService;
 import com.kamann.user.service.UserDeleteService;
@@ -14,10 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -29,23 +24,19 @@ public class UserController {
     private final UserCreateService userCreateService;
     private final UserDeleteService userDeleteService;
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
-
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getUserById(@PathVariable Long id) throws ThereIsNoUserException {
-        if(userRepository.existsById(id)) {
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long id) throws ResourceNotFoundException {
+        if (userRepository.existsById(id)) {
             return new ResponseEntity<>(userGetService.getUserById(id), HttpStatus.FOUND);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
-
     }
 
     @GetMapping("/all")
-    public List<UserDto> getUsers() {
-        return userListService.getUsersAsList();
+    public ResponseEntity<List<UserDto>> getUsers() {
+        return new ResponseEntity<>(userListService.getUsersAsList(), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/create")
@@ -55,9 +46,11 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-//todo: return other status when operation fail    @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public String deleteUser(@PathVariable Long id) {
-        return userDeleteService.isDeleted(id);
+    public ResponseEntity<Long> deleteUser(@PathVariable Long id) {
+        if (userDeleteService.delete(id)) {
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
-
 }

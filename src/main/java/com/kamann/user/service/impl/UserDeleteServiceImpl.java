@@ -1,5 +1,7 @@
 package com.kamann.user.service.impl;
 
+import com.kamann.exception.ResourceNotFoundException;
+import com.kamann.user.domain.User;
 import com.kamann.user.repository.UserRepository;
 import com.kamann.user.service.UserDeleteService;
 import lombok.RequiredArgsConstructor;
@@ -12,11 +14,9 @@ public class UserDeleteServiceImpl implements UserDeleteService {
     private final UserRepository userRepository;
 
     @Override
-    public String isDeleted(Long id) {
-        if (userRepository.findById(id).isPresent()) {
-            userRepository.deleteById(id);
-            return "User is deleted.";
-        }
-        return "User not found.";
+    public boolean delete(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found: " + id));
+        userRepository.deleteById(user.getId());
+        return !userRepository.existsById(id);
     }
 }
