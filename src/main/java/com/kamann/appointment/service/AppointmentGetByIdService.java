@@ -4,5 +4,5 @@ import com.kamann.appointment.dto.AppointmentDto;
 
 public interface AppointmentGetByIdService {
 
-    AppointmentDto getAppointmentById(Long id);
+    AppointmentDto getById(Long id);
 }

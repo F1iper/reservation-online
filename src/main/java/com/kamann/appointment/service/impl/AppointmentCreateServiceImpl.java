@@ -16,7 +16,7 @@ public class AppointmentCreateServiceImpl implements AppointmentCreateService {
     private final AppointmentRepository appointmentRepository;
 
     @Override
-    public AppointmentDto createAppointment(AppointmentDto appointmentDto) {
+    public AppointmentDto create(AppointmentDto appointmentDto) {
         Appointment mappedAppointment = modelMapper.map(appointmentDto, Appointment.class);
         appointmentRepository.save(modelMapper.map(mappedAppointment, Appointment.class)); //todo: check save method, yes/no
         return modelMapper.map(mappedAppointment, AppointmentDto.class);

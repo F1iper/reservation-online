@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface AppointmentAsListService {
 
-    List<AppointmentDto> getAppointmentAsList();
+    List<AppointmentDto> getAsList();
 }

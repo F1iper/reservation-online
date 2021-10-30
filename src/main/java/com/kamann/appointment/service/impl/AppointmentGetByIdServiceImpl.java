@@ -15,7 +15,7 @@ public class AppointmentGetByIdServiceImpl implements AppointmentGetByIdService 
     private final AppointmentMapper appointmentMapper;
 
     @Override
-    public AppointmentDto getAppointmentById(Long id) {
+    public AppointmentDto getById(Long id) {
         return appointmentMapper.appointmentToAppointmentDto(appointmentRepository.getOne(id));
     }
 }

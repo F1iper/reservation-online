@@ -19,7 +19,7 @@ public class AppointmentAsListServiceImpl implements AppointmentAsListService {
     private final ModelMapper modelMapper;
 
     @Override
-    public List<AppointmentDto> getAppointmentAsList() {
+    public List<AppointmentDto> getAsList() {
         List<Appointment> theList = appointmentRepository.findAll();
         return theList
                 .stream()

@@ -24,17 +24,17 @@ public class AppointmentController {
 
     @PostMapping
     public ResponseEntity<AppointmentDto> createAppointment(@RequestBody AppointmentDto appointmentDto) {
-        return new ResponseEntity<>(appointmentCreateService.createAppointment(appointmentDto), HttpStatus.CREATED);
+        return new ResponseEntity<>(appointmentCreateService.create(appointmentDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<AppointmentDto> getAppointmentById(@PathVariable Long id) {
-        return new ResponseEntity<>(appointmentGetByIdService.getAppointmentById(id), HttpStatus.FOUND);
+        return new ResponseEntity<>(appointmentGetByIdService.getById(id), HttpStatus.FOUND);
     }
 
     @GetMapping
     public ResponseEntity<List<AppointmentDto>> getAppointmentAsList() {
-        return new ResponseEntity<>(appointmentAsListService.getAppointmentAsList(), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(appointmentAsListService.getAsList(), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{id}")
