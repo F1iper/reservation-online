@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -18,7 +17,7 @@ public class Product {
 
     @Id
     @GeneratedValue
-    private UUID id;
+    private Long id;
 
     private String name;
 

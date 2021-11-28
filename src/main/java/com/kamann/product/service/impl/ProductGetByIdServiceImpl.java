@@ -4,13 +4,13 @@ import com.kamann.product.domain.Product;
 import com.kamann.product.dto.ProductDto;
 import com.kamann.product.mapper.ProductMapper;
 import com.kamann.product.repository.ProductRepository;
-import com.kamann.product.service.ProductGetService;
+import com.kamann.product.service.ProductGetByIdService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ProductGetServiceImpl implements ProductGetService {
+public class ProductGetByIdServiceImpl implements ProductGetByIdService {
 
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;

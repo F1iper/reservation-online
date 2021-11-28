@@ -15,8 +15,10 @@ public class AppointmentDeleteServiceImpl implements AppointmentDeleteService {
 
     @Override
     public boolean delete(Long id) {
-        Appointment appointment = appointmentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Appointment not found: " + id));
+        Appointment appointment = appointmentRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Appointment with id: [" + id + "] not found."));
         appointmentRepository.deleteById(appointment.getId());
         return !appointmentRepository.existsById(id);
     }
+    //todo: postman that!
 }
