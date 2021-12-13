@@ -1,6 +1,6 @@
 package com.kamann.client.service.impl;
 
-import com.kamann.client.domain.User;
+import com.kamann.client.domain.Client;
 import com.kamann.client.dto.ClientDto;
 import com.kamann.client.mapper.ClientMapper;
 import com.kamann.client.repository.ClientRepository;
@@ -21,8 +21,8 @@ public class ClientCreateServiceImpl implements ClientCreateService {
     @Override
     public ClientDto execute(ClientDto clientDto) {
         clientDto.setPassword(encoder.encode(clientDto.getPassword()));
-        User beforeSaveUser = clientMapper.userDtoToUser(clientDto);
-        User savedUser = clientRepository.save(beforeSaveUser);
-        return clientMapper.userToUserDto(savedUser);
+        Client beforeSaveClient = clientMapper.ClientDtoToClient(clientDto);
+        Client savedClient = clientRepository.save(beforeSaveClient);
+        return clientMapper.clientToClientDto(savedClient);
     }
 }

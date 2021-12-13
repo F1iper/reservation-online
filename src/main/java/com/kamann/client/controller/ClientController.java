@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/clients")
 @RequiredArgsConstructor
 public class ClientController {
 
@@ -26,27 +26,27 @@ public class ClientController {
     private final ClientRepository clientRepository;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClientDto> getUserById(@PathVariable Long id) throws ResourceNotFoundException {
+    public ResponseEntity<ClientDto> getClientById(@PathVariable Long id) throws ResourceNotFoundException {
         if (clientRepository.existsById(id)) {
-            return new ResponseEntity<>(clientGetService.getUserById(id), HttpStatus.FOUND);
+            return new ResponseEntity<>(clientGetService.getClientById(id), HttpStatus.FOUND);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<ClientDto>> getUsers() {
-        return new ResponseEntity<>(clientListService.getUsersAsList(), HttpStatus.ACCEPTED);
+    @GetMapping
+    public ResponseEntity<List<ClientDto>> getClients() {
+        return new ResponseEntity<>(clientListService.getClientsAsList(), HttpStatus.ACCEPTED);
     }
 
     @PostMapping
-    public ResponseEntity<ClientDto> createUser(@RequestBody ClientDto clientDto) {
+    public ResponseEntity<ClientDto> createClient(@RequestBody ClientDto clientDto) {
         clientCreateService.execute(clientDto);
         return new ResponseEntity<>(clientDto, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Long> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Long> deleteClient(@PathVariable Long id) {
         if (clientDeleteService.delete(id)) {
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } else {

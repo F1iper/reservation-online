@@ -4,5 +4,5 @@ import com.kamann.client.dto.ClientDto;
 
 public interface ClientGetService {
 
-    ClientDto getUserById(Long id);
+    ClientDto getClientById(Long id);
 }

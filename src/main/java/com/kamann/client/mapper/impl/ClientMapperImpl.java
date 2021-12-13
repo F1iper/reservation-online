@@ -1,6 +1,6 @@
 package com.kamann.client.mapper.impl;
 
-import com.kamann.client.domain.User;
+import com.kamann.client.domain.Client;
 import com.kamann.client.dto.ClientDto;
 import com.kamann.client.mapper.ClientMapper;
 import lombok.RequiredArgsConstructor;
@@ -14,12 +14,12 @@ public class ClientMapperImpl implements ClientMapper {
     private final ModelMapper modelMapper;
 
     @Override
-    public User userDtoToUser(ClientDto clientDto) {
-        return modelMapper.map(clientDto, User.class);
+    public Client ClientDtoToClient(ClientDto clientDto) {
+        return modelMapper.map(clientDto, Client.class);
     }
 
     @Override
-    public ClientDto userToUserDto(User user) {
-        return modelMapper.map(user, ClientDto.class);
+    public ClientDto clientToClientDto(Client client) {
+        return modelMapper.map(client, ClientDto.class);
     }
 }

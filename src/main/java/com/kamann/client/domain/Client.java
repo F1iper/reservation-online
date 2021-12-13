@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class Client {
 
     @Id
     @GeneratedValue

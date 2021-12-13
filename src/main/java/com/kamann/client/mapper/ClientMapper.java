@@ -1,12 +1,12 @@
 package com.kamann.client.mapper;
 
-import com.kamann.client.domain.User;
+import com.kamann.client.domain.Client;
 import com.kamann.client.dto.ClientDto;
 
 public interface ClientMapper {
 
-        User userDtoToUser(ClientDto clientDto);
-        ClientDto userToUserDto(User user);
-        //todo: List<UserDto> UserListToUserDtoList(List<User>
+        Client ClientDtoToClient(ClientDto clientDto);
+        ClientDto clientToClientDto(Client client);
+        //todo: List<ClientDto> ClientListToClientDtoList(List<Client>
 
 }
