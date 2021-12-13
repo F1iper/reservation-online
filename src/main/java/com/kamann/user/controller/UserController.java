@@ -39,7 +39,7 @@ public class UserController {
         return new ResponseEntity<>(userListService.getUsersAsList(), HttpStatus.ACCEPTED);
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
         userCreateService.execute(userDto);
         return new ResponseEntity<>(userDto, HttpStatus.CREATED);

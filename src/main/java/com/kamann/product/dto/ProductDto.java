@@ -3,7 +3,6 @@ package com.kamann.product.dto;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -12,7 +11,7 @@ import java.util.UUID;
 @Builder
 public class ProductDto {
 
-    private UUID id;
+    private Long id;
     private String name;
     private BigDecimal price;
     private boolean discount;

@@ -3,8 +3,8 @@ package com.kamann.user.dto;
 import lombok.*;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -13,7 +13,9 @@ import java.util.UUID;
 @Builder
 public class UserDto {
 
-    private UUID id;
+    @NotNull
+    @NotEmpty
+    private Long id;
 
     @NotNull
     private String pesel;
@@ -27,7 +29,8 @@ public class UserDto {
     @NotNull
     private String address;
 
-    @Email(message = "Invalid email")
+    //todo: fix regex (?) debug that!
+    @Email(message = "Please provide a valid email address", regexp = ".+@.+\\..+")
     @NotNull
     private String email;
 
