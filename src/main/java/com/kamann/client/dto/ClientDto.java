@@ -1,4 +1,4 @@
-package com.kamann.user.dto;
+package com.kamann.client.dto;
 
 import lombok.*;
 
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDto {
+public class ClientDto {
 
     @NotNull
     @NotEmpty

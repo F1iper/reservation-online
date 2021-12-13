@@ -1,4 +1,4 @@
-package com.kamann.user.domain;
+package com.kamann.client.domain;
 
 import lombok.*;
 
