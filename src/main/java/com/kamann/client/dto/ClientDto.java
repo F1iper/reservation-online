@@ -2,9 +2,7 @@ package com.kamann.client.dto;
 
 import lombok.*;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -13,28 +11,23 @@ import javax.validation.constraints.NotNull;
 @Builder
 public class ClientDto {
 
-    @NotNull
     @NotEmpty
     private Long id;
 
-    @NotNull
     private String pesel;
 
-    @NotNull(message = "You have to enter the name")
     private String firstName;
 
-    @NotNull
     private String lastname;
 
-    @NotNull
+    @NotEmpty
     private String address;
 
-    //todo: fix regex (?) debug that!
-    @Email(message = "Please provide a valid email address", regexp = ".+@.+\\..+")
-    @NotNull
+    @NotEmpty
     private String email;
 
-    @NotNull
+    //todo: """java.lang.IllegalArgumentException: rawPassword cannot be null""" (how to handle that???)
+    @NotEmpty
     private String password;
 
 }

@@ -1,7 +1,5 @@
 package com.kamann.client.service.impl;
 
-import com.kamann.exception.ResourceNotFoundException;
-import com.kamann.client.domain.Client;
 import com.kamann.client.repository.ClientRepository;
 import com.kamann.client.service.ClientDeleteService;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +13,6 @@ public class ClientDeleteServiceImpl implements ClientDeleteService {
 
     @Override
     public boolean delete(Long id) {
-        Client client = clientRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found: " + id));
-        clientRepository.deleteById(client.getId());
-        return !clientRepository.existsById(id);
+        return clientRepository.existsById(id);
     }
 }

@@ -32,17 +32,16 @@ public class ProductController {
         return new ResponseEntity<>(productGetByIdService.getProductById(id), HttpStatus.FOUND);
     }
 
-    @GetMapping("/list")
+    @GetMapping
     public ResponseEntity<List<ProductDto>> getProductAsList() {
         return new ResponseEntity<>(productListService.getProductsAsList(), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ProductDto> deleteProduct(@PathVariable Long id) {
-        if (productDeleteService.delete(id)) {
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        } else {
+    public ResponseEntity<Long> deleteProduct(@PathVariable Long id) {
+        if (!productDeleteService.delete(id)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }

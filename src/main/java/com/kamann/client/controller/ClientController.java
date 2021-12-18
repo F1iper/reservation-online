@@ -1,12 +1,12 @@
 package com.kamann.client.controller;
 
-import com.kamann.exception.ResourceNotFoundException;
 import com.kamann.client.dto.ClientDto;
 import com.kamann.client.repository.ClientRepository;
 import com.kamann.client.service.ClientCreateService;
 import com.kamann.client.service.ClientDeleteService;
 import com.kamann.client.service.ClientGetService;
 import com.kamann.client.service.ClientListService;
+import com.kamann.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,10 +47,7 @@ public class ClientController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Long> deleteClient(@PathVariable Long id) {
-        if (clientDeleteService.delete(id)) {
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        clientDeleteService.delete(id);
+        return new ResponseEntity<>(id, HttpStatus.ACCEPTED);
     }
 }
