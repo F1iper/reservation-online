@@ -24,22 +24,22 @@ public class EmployeeController {
 
 
     @PostMapping
-    public ResponseEntity<EmployeeDto> addEmployee(@RequestBody EmployeeDto employeeDto) {
+    public ResponseEntity<EmployeeDto> add(@RequestBody EmployeeDto employeeDto) {
         return new ResponseEntity<>(employeeCreateService.execute(employeeDto), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long id) {
+    public ResponseEntity<EmployeeDto> getById(@PathVariable Long id) {
         return new ResponseEntity<>(employeeGetService.getEmployeeById(id), HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<EmployeeDto>> getEmployeesAsList() {
+    public ResponseEntity<List<EmployeeDto>> getAsList() {
         return new ResponseEntity<>(employeeListService.getEmployeesAsList(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Long> removeEmployee(@PathVariable Long id) {
+    public ResponseEntity<Long> remove(@PathVariable Long id) {
         employeeDeleteService.delete(id);
         return new ResponseEntity<>(id, HttpStatus.ACCEPTED);
     }
