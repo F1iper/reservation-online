@@ -1,10 +1,10 @@
 package com.kamann.appointment.controller;
 
-import com.kamann.appointment.dto.AppointmentDto;
-import com.kamann.appointment.service.AppointmentAsListService;
-import com.kamann.appointment.service.AppointmentCreateService;
-import com.kamann.appointment.service.AppointmentDeleteService;
-import com.kamann.appointment.service.AppointmentGetByIdService;
+import com.kamann.appointment.domain.dto.AppointmentDto;
+import com.kamann.appointment.domain.service.AppointmentAsListService;
+import com.kamann.appointment.domain.service.AppointmentCreateService;
+import com.kamann.appointment.domain.service.AppointmentDeleteService;
+import com.kamann.appointment.domain.service.AppointmentGetByIdService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

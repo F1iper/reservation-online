@@ -1,10 +1,10 @@
 package com.kamann.employee.controller;
 
-import com.kamann.employee.dto.EmployeeDto;
-import com.kamann.employee.service.EmployeeCreateService;
-import com.kamann.employee.service.EmployeeDeleteService;
-import com.kamann.employee.service.EmployeeGetService;
-import com.kamann.employee.service.EmployeeListService;
+import com.kamann.employee.domain.dto.EmployeeDto;
+import com.kamann.employee.domain.service.EmployeeCreateService;
+import com.kamann.employee.domain.service.EmployeeDeleteService;
+import com.kamann.employee.domain.service.EmployeeGetService;
+import com.kamann.employee.domain.service.EmployeeListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

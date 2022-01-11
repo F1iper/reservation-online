@@ -1,10 +1,10 @@
 package com.kamann.product.controller;
 
-import com.kamann.product.dto.ProductDto;
-import com.kamann.product.service.ProductCreateService;
-import com.kamann.product.service.ProductDeleteService;
-import com.kamann.product.service.ProductGetByIdService;
-import com.kamann.product.service.ProductListService;
+import com.kamann.product.domain.dto.ProductDto;
+import com.kamann.product.domain.service.ProductCreateService;
+import com.kamann.product.domain.service.ProductDeleteService;
+import com.kamann.product.domain.service.ProductGetByIdService;
+import com.kamann.product.domain.service.ProductListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
