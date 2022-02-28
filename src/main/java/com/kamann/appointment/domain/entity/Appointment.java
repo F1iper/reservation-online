@@ -1,12 +1,11 @@
 package com.kamann.appointment.domain.entity;
 
+import com.kamann.product.domain.entity.Product;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -17,14 +16,14 @@ import java.time.LocalDate;
 public class Appointment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //todo: auto (?)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String description;
 
     private LocalDate date;
 
-    //todo: one to one -> user
-    // one to many -> product (?) one appointment with many products ?
+    @OneToMany(mappedBy = "appointment")
+    public Set<Product> products;
 
 }

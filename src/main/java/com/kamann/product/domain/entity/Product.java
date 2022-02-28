@@ -1,5 +1,6 @@
 package com.kamann.product.domain.entity;
 
+import com.kamann.appointment.domain.entity.Appointment;
 import com.kamann.productCategory.domain.entity.ProductCategory;
 import lombok.*;
 
@@ -29,5 +30,9 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     public ProductCategory productCategory;
+
+    @ManyToOne
+    @JoinColumn(name = "appointment_id")
+    public Appointment appointment;
 
 }

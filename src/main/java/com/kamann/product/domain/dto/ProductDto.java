@@ -14,7 +14,8 @@ public class ProductDto {
     private Long id;
     private String name;
     private BigDecimal price;
-    private boolean discount;
-    private int lengthInMin;
+    private Boolean discount;
+    private Integer length;
+    //todo Cannot input category in mysql request: "private ProductCategory productCategory;"
 
 }
