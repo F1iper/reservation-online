@@ -15,5 +15,6 @@ public class ProductDto {
     private String name;
     private BigDecimal price;
     private boolean discount;
+    private int lengthInMin;
 
 }

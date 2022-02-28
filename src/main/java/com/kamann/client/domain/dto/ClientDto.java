@@ -2,8 +2,6 @@ package com.kamann.client.domain.dto;
 
 import lombok.*;
 
-import javax.validation.constraints.NotEmpty;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,7 +16,6 @@ public class ClientDto {
     private String address;
     private String email;
     //todo: """java.lang.IllegalArgumentException: rawPassword cannot be null""" (how to handle that???)
-    @NotEmpty
     private String password;
 
 }
