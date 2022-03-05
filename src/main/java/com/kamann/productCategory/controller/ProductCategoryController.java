@@ -54,4 +54,14 @@ public class ProductCategoryController {
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @DeleteMapping
+    public ResponseEntity<ProductCategoryDto> removeAllProductCategories() {
+        if (removeService.productCategoryListIsEmpty())
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+
+
+    }
 }

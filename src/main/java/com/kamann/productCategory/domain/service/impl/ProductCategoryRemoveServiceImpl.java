@@ -12,6 +12,16 @@ public class ProductCategoryRemoveServiceImpl implements ProductCategoryRemoveSe
     private final ProductCategoryRepository repository;
 
     @Override
+    public boolean productCategoryListIsEmpty() {
+        if(repository.findAll().isEmpty())
+            return true;
+        else {
+            repository.deleteAll();
+            return false;
+        }
+    }
+
+    @Override
     public boolean removeIfIdExists(Long id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
