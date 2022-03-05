@@ -1,5 +1,6 @@
 package com.kamann.productCategory.controller;
 
+import com.kamann.productCategory.domain.dto.ProductCategoryDto;
 import com.kamann.productCategory.domain.entity.ProductCategory;
 import com.kamann.productCategory.domain.repository.ProductCategoryRepository;
 import com.kamann.productCategory.domain.service.ProductCategoryGetByIdService;
@@ -20,8 +21,11 @@ public class ProductCategoryController {
     private final ProductCategoryGetByIdService getByIdService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductCategory> getCategoryById(@PathVariable Long id) {
-        return new ResponseEntity<>(repository.getOne(id), HttpStatus.OK);
+    public ResponseEntity<ProductCategoryDto> getCategoryById(@PathVariable Long id) {
+        if (getByIdService.existsById(id))
+            return new ResponseEntity<>(getByIdService.getProductCategoryDtoById(id), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping

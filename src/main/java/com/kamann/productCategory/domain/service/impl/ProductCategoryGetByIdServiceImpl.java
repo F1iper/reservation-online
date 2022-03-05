@@ -19,4 +19,9 @@ public class ProductCategoryGetByIdServiceImpl implements ProductCategoryGetById
     public ProductCategoryDto getProductCategoryDtoById(Long id) {
         return mapper.map(repository.getOne(id), ProductCategoryDto.class);
     }
+
+    @Override
+    public boolean existsById(Long id) {
+        return repository.existsById(id);
+    }
 }

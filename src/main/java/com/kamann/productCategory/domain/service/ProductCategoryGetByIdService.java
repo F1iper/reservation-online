@@ -6,5 +6,7 @@ public interface ProductCategoryGetByIdService {
 
     ProductCategoryDto getProductCategoryDtoById(Long id);
 
+    boolean existsById(Long id);
+
 
 }
