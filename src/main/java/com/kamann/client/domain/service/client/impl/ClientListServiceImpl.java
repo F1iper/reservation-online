@@ -15,15 +15,15 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ClientListServiceImpl implements ClientListService {
 
-    private final ClientRepository clientRepository;
-    private final ClientMapper clientMapper;
+    private final ClientRepository repository;
+    private final ClientMapper mapper;
 
     @Override
     public List<ClientDto> getClientsAsList() {
-        List<Client> allClients = clientRepository.findAll();
+        List<Client> allClients = repository.findAll();
         return allClients
                 .stream()
-                .map(clientMapper::clientToClientDto)
+                .map(mapper::clientToClientDto)
                 .collect(Collectors.toList());
     }
 }

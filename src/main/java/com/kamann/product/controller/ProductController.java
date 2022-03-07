@@ -1,7 +1,7 @@
 package com.kamann.product.controller;
 
 import com.kamann.product.domain.dto.ProductDto;
-import com.kamann.product.domain.service.ProductCreateService;
+import com.kamann.product.domain.service.ProductAddService;
 import com.kamann.product.domain.service.ProductDeleteService;
 import com.kamann.product.domain.service.ProductGetByIdService;
 import com.kamann.product.domain.service.ProductListService;
@@ -17,31 +17,45 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
 
-    private final ProductGetByIdService productGetByIdService;
-    private final ProductListService productListService;
-    private final ProductCreateService productCreateService;
-    private final ProductDeleteService productDeleteService;
-
-    @PostMapping
-    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
-        return new ResponseEntity<>(productCreateService.execute(productDto), HttpStatus.CREATED);
-    }
+    private final ProductGetByIdService getByIdService;
+    private final ProductListService getAsListService;
+    private final ProductAddService addService;
+    private final ProductDeleteService deleteService;
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductDto> getProductById(@PathVariable Long id) {
-        return new ResponseEntity<>(productGetByIdService.getProductById(id), HttpStatus.FOUND);
+        if (getByIdService.existsById(id))
+            return new ResponseEntity<>(getByIdService.getProductById(id), HttpStatus.FOUND);
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductDto>> getProductAsList() {
-        return new ResponseEntity<>(productListService.getProductsAsList(), HttpStatus.ACCEPTED);
+    public ResponseEntity<List<ProductDto>> getProductsAsList() {
+        if (getAsListService.getProductsAsList().isEmpty())
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(getAsListService.getProductsAsList(), HttpStatus.FOUND);
+    }
+
+    @PostMapping
+    public ResponseEntity<ProductDto> addProduct(@RequestBody ProductDto dto) {
+        return new ResponseEntity<>(addService.add(dto), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Long> deleteProduct(@PathVariable Long id) {
-        if (!productDeleteService.delete(id)) {
+    public ResponseEntity<ProductDto> deleteProduct(@PathVariable Long id) {
+        if (deleteService.deleteIfIdExists(id))
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<ProductDto> deleteAllProducts() {
+        if (deleteService.productListIsEmpty())
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }

@@ -6,4 +6,5 @@ public interface ProductGetByIdService {
 
     ProductDto getProductById(Long id);
 
+    boolean existsById(Long id);
 }

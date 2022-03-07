@@ -1,12 +1,10 @@
 package com.kamann.client.controller;
 
 import com.kamann.client.domain.dto.ClientDto;
-import com.kamann.client.domain.repository.ClientRepository;
-import com.kamann.client.domain.service.client.ClientCreateService;
+import com.kamann.client.domain.service.client.ClientAddService;
 import com.kamann.client.domain.service.client.ClientDeleteService;
 import com.kamann.client.domain.service.client.ClientGetByIdService;
 import com.kamann.client.domain.service.client.ClientListService;
-import com.kamann.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,35 +17,46 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClientController {
 
-    private final ClientGetByIdService clientGetByIdService;
-    private final ClientListService clientListService;
-    private final ClientCreateService clientCreateService;
-    private final ClientDeleteService clientDeleteService;
-    private final ClientRepository clientRepository;
+    private final ClientGetByIdService getByIdService;
+    private final ClientListService getAsListService;
+    private final ClientAddService addService;
+    private final ClientDeleteService deleteservice;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClientDto> getClientById(@PathVariable Long id) throws ResourceNotFoundException {
-        if (clientRepository.existsById(id)) {
-            return new ResponseEntity<>(clientGetByIdService.getById(id), HttpStatus.FOUND);
-        } else {
+    public ResponseEntity<ClientDto> getClientById(@PathVariable Long id) {
+        if (getByIdService.existsById(id))
+            return new ResponseEntity<>(getByIdService.getClientById(id), HttpStatus.FOUND);
+        else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
     }
 
     @GetMapping
-    public ResponseEntity<List<ClientDto>> getClients() {
-        return new ResponseEntity<>(clientListService.getClientsAsList(), HttpStatus.ACCEPTED);
+    public ResponseEntity<List<ClientDto>> getClientsAsList() {
+        if (getAsListService.getClientsAsList().isEmpty())
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(getAsListService.getClientsAsList(), HttpStatus.FOUND);
     }
 
     @PostMapping
-    public ResponseEntity<ClientDto> createClient(@RequestBody ClientDto clientDto) {
-        clientCreateService.execute(clientDto);
-        return new ResponseEntity<>(clientDto, HttpStatus.CREATED);
+    public ResponseEntity<ClientDto> addClient(@RequestBody ClientDto dto) {
+        return new ResponseEntity<>(addService.add(dto), HttpStatus.CREATED);
     }
+    //todo raw paswword cannot be null!!!
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Long> deleteClient(@PathVariable Long id) {
-        clientDeleteService.delete(id);
-        return new ResponseEntity<>(id, HttpStatus.ACCEPTED);
+    public ResponseEntity<ClientDto> deleteClient(@PathVariable Long id) {
+        if (deleteservice.deleteIfIdExists(id))
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<ClientDto> deleteAllClients() {
+        if (deleteservice.clientListIsEmpty())
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }

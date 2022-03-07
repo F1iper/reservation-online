@@ -22,7 +22,7 @@ public class ProductCategoryDeleteServiceImpl implements ProductCategoryDeleteSe
     }
 
     @Override
-    public boolean removeIfIdExists(Long id) {
+    public boolean deleteIfIdExists(Long id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
             return true;

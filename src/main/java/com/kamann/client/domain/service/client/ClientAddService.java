@@ -2,7 +2,7 @@ package com.kamann.client.domain.service.client;
 
 import com.kamann.client.domain.dto.ClientDto;
 
-public interface ClientCreateService {
+public interface ClientAddService {
 
-    ClientDto execute(ClientDto clientDto);
+    ClientDto add(ClientDto clientDto);
 }

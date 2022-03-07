@@ -1,7 +1,7 @@
 package com.kamann.employee.controller;
 
 import com.kamann.employee.domain.dto.EmployeeDto;
-import com.kamann.employee.domain.service.EmployeeCreateService;
+import com.kamann.employee.domain.service.EmployeeAddService;
 import com.kamann.employee.domain.service.EmployeeDeleteService;
 import com.kamann.employee.domain.service.EmployeeGetService;
 import com.kamann.employee.domain.service.EmployeeListService;
@@ -17,30 +17,46 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeController {
 
-    private final EmployeeCreateService employeeCreateService;
-    private final EmployeeGetService employeeGetService;
-    private final EmployeeListService employeeListService;
-    private final EmployeeDeleteService employeeDeleteService;
+    private final EmployeeGetService getByIdService;
+    private final EmployeeListService getAsListService;
+    private final EmployeeAddService addService;
+    private final EmployeeDeleteService deleteService;
 
-
-    @PostMapping
-    public ResponseEntity<EmployeeDto> add(@RequestBody EmployeeDto employeeDto) {
-        return new ResponseEntity<>(employeeCreateService.execute(employeeDto), HttpStatus.OK);
-    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmployeeDto> getById(@PathVariable Long id) {
-        return new ResponseEntity<>(employeeGetService.getEmployeeById(id), HttpStatus.OK);
+    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long id) {
+        if (getByIdService.existsById(id))
+            return new ResponseEntity<>(getByIdService.getEmployeeById(id), HttpStatus.FOUND);
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping
-    public ResponseEntity<List<EmployeeDto>> getAsList() {
-        return new ResponseEntity<>(employeeListService.getEmployeesAsList(), HttpStatus.OK);
+    public ResponseEntity<List<EmployeeDto>> getEmployeesAsList() {
+        if (getAsListService.getEmployeesAsList().isEmpty())
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(getAsListService.getEmployeesAsList(), HttpStatus.FOUND);
+    }
+
+    @PostMapping
+    public ResponseEntity<EmployeeDto> addEmployee(@RequestBody EmployeeDto dto) {
+        return new ResponseEntity<>(addService.execute(dto), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Long> remove(@PathVariable Long id) {
-        employeeDeleteService.delete(id);
-        return new ResponseEntity<>(id, HttpStatus.ACCEPTED);
+    public ResponseEntity<EmployeeDto> deleteEmployee(@PathVariable Long id) {
+        if (deleteService.deleteIfIdExists(id))
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<EmployeeDto> deleteAllEmployees() {
+        if (deleteService.employeeListIsEmpty())
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }

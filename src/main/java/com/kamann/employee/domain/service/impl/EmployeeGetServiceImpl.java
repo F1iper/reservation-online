@@ -11,11 +11,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class EmployeeGetServiceImpl implements EmployeeGetService {
 
-    private final EmployeeRepository employeeRepository;
-    private final EmployeeMapper employeeMapper;
+    private final EmployeeRepository repository;
+    private final EmployeeMapper mapper;
+
+    @Override
+    public boolean existsById(Long id) {
+        return repository.existsById(id);
+    }
 
     @Override
     public EmployeeDto getEmployeeById(Long id) {
-        return employeeMapper.employeeToEmployeeDto(employeeRepository.getOne(id));
+        return mapper.employeeToEmployeeDto(repository.getOne(id));
     }
 }

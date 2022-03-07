@@ -2,7 +2,7 @@ package com.kamann.employee.domain.service;
 
 import com.kamann.employee.domain.dto.EmployeeDto;
 
-public interface EmployeeCreateService {
+public interface EmployeeAddService {
 
     EmployeeDto execute(EmployeeDto employeeDto);
 }

@@ -11,11 +11,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ClientGetByIdServiceImpl implements ClientGetByIdService {
 
-    private final ClientRepository clientRepository;
-    private final ClientMapper clientMapper;
+    private final ClientRepository repository;
+    private final ClientMapper mapper;
 
     @Override
-    public ClientDto getById(Long id) {
-        return clientMapper.clientToClientDto(clientRepository.getOne(id));
+    public ClientDto getClientById(Long id) {
+        return mapper.clientToClientDto(repository.getOne(id));
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return repository.existsById(id);
     }
 }

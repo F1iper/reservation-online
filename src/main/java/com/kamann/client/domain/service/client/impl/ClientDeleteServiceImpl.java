@@ -9,10 +9,25 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ClientDeleteServiceImpl implements ClientDeleteService {
 
-    private final ClientRepository clientRepository;
+    private final ClientRepository repository;
 
     @Override
-    public boolean delete(Long id) {
-        return clientRepository.existsById(id);
+    public boolean clientListIsEmpty() {
+        if (repository.findAll().isEmpty())
+            return true;
+        else {
+            repository.deleteAll();
+            return false;
+        }
     }
+
+    @Override
+    public boolean deleteIfIdExists(Long id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
+        } else
+            return false;
+    }
+
 }

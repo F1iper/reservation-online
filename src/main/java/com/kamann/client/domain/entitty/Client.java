@@ -15,7 +15,7 @@ import java.util.Date;
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Nullable
     private String firstName;

@@ -23,7 +23,7 @@ public class ProductCategoryGetAsListServiceImpl implements ProductCategoryGetAs
 
     @Override
     public List<ProductCategoryDto> getProductCategoryAsList() {
-        if(listIsEmpty(repository.findAll()))
+        if (listIsEmpty(repository.findAll()))
             return new ArrayList<>();
         else {
             List<ProductCategory> theList = new ArrayList<>();

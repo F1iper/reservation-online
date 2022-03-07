@@ -9,10 +9,24 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class EmployeeDeleteServiceImpl implements EmployeeDeleteService {
 
-    private final EmployeeRepository employeeRepository;
+    private final EmployeeRepository repository;
 
     @Override
-    public boolean delete(Long id) {
-        return employeeRepository.existsById(id);
+    public boolean employeeListIsEmpty() {
+        if (repository.findAll().isEmpty())
+            return true;
+        else {
+            repository.deleteAll();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteIfIdExists(Long id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
+        } else
+            return false;
     }
 }

@@ -45,7 +45,7 @@ public class ProductCategoryController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ProductCategoryDto> deleteProductCategoryById(@PathVariable Long id) {
-        if (deleteService.removeIfIdExists(id))
+        if (deleteService.deleteIfIdExists(id))
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -57,6 +57,5 @@ public class ProductCategoryController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
-
     }
 }
