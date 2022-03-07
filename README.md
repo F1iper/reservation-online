@@ -14,16 +14,18 @@
 * Spring Security
 * Swagger UI
 
+---
 ## Future features
 
-
+---
 ## REST API Documentation:
 http://localhost:8080/swagger-ui.html
 ![](swag.png)
 
-
+---
 ## How to run
+Not available yet. :]
 
-
+---
 ### Status
 Project is in progress.
