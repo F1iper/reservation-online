@@ -1,8 +1,8 @@
 package com.kamann.productCategory.controller;
 
 import com.kamann.productCategory.domain.dto.ProductCategoryDto;
-import com.kamann.productCategory.domain.entity.ProductCategory;
 import com.kamann.productCategory.domain.repository.ProductCategoryRepository;
+import com.kamann.productCategory.domain.service.ProductCategoryAddService;
 import com.kamann.productCategory.domain.service.ProductCategoryGetAsListService;
 import com.kamann.productCategory.domain.service.ProductCategoryGetByIdService;
 import com.kamann.productCategory.domain.service.ProductCategoryRemoveService;
@@ -24,6 +24,7 @@ public class ProductCategoryController {
     private final ProductCategoryGetByIdService getById;
     private final ProductCategoryGetAsListService getAsList;
     private final ProductCategoryRemoveService removeService;
+    private final ProductCategoryAddService addService;
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductCategoryDto> getCategoryById(@PathVariable Long id) {
@@ -42,9 +43,8 @@ public class ProductCategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductCategory> addProductCategory(@RequestBody ProductCategory category) {
-        repository.save(category);
-        return new ResponseEntity<>(category, HttpStatus.OK);
+    public ResponseEntity<ProductCategoryDto> addProductCategory(@RequestBody ProductCategoryDto dto) {
+        return new ResponseEntity<>(addService.add(dto), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
