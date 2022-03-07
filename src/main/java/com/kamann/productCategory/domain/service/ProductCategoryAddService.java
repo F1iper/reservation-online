@@ -5,5 +5,4 @@ import com.kamann.productCategory.domain.dto.ProductCategoryDto;
 public interface ProductCategoryAddService {
 
     ProductCategoryDto add(ProductCategoryDto dto);
-
 }

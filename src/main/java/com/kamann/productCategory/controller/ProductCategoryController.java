@@ -1,6 +1,7 @@
 package com.kamann.productCategory.controller;
 
 import com.kamann.productCategory.domain.dto.ProductCategoryDto;
+import com.kamann.productCategory.domain.entity.ProductCategory;
 import com.kamann.productCategory.domain.repository.ProductCategoryRepository;
 import com.kamann.productCategory.domain.service.ProductCategoryAddService;
 import com.kamann.productCategory.domain.service.ProductCategoryGetAsListService;
