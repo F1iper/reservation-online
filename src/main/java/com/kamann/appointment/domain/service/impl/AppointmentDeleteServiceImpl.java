@@ -1,9 +1,7 @@
 package com.kamann.appointment.domain.service.impl;
 
-import com.kamann.appointment.domain.entity.Appointment;
 import com.kamann.appointment.domain.repository.AppointmentRepository;
 import com.kamann.appointment.domain.service.AppointmentDeleteService;
-import com.kamann.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,14 +9,24 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AppointmentDeleteServiceImpl implements AppointmentDeleteService {
 
-    private final AppointmentRepository appointmentRepository;
+    private final AppointmentRepository repository;
 
     @Override
-    public boolean delete(Long id) {
-        Appointment appointment = appointmentRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Appointment with id: [" + id + "] not found."));
-        appointmentRepository.deleteById(appointment.getId());
-        return !appointmentRepository.existsById(id);
+    public boolean appointmentListIsEmpty() {
+        if (repository.findAll().isEmpty())
+            return true;
+        else {
+            repository.deleteAll();
+            return false;
+        }
     }
-    //todo: postman that!
+
+    @Override
+    public boolean removeIfIdExists(Long id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
+        } else
+            return false;
+    }
 }

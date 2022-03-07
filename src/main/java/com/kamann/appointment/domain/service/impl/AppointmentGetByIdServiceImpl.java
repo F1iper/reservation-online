@@ -11,11 +11,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AppointmentGetByIdServiceImpl implements AppointmentGetByIdService {
 
-    private final AppointmentRepository appointmentRepository;
-    private final AppointmentMapper appointmentMapper;
+    private final AppointmentRepository repository;
+    private final AppointmentMapper mapper;
 
     @Override
     public AppointmentDto getById(Long id) {
-        return appointmentMapper.appointmentToAppointmentDto(appointmentRepository.getOne(id));
+        return mapper.appointmentToAppointmentDto(repository.getOne(id));
+    }
+
+    @Override
+    public boolean existsByID(Long id) {
+        return repository.existsById(id);
     }
 }

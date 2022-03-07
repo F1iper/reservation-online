@@ -1,13 +1,11 @@
 package com.kamann.productCategory.controller;
 
 import com.kamann.productCategory.domain.dto.ProductCategoryDto;
-import com.kamann.productCategory.domain.entity.ProductCategory;
-import com.kamann.productCategory.domain.repository.ProductCategoryRepository;
+import com.kamann.productCategory.domain.service.ProductCategoryAddService;
 import com.kamann.productCategory.domain.service.ProductCategoryGetAsListService;
 import com.kamann.productCategory.domain.service.ProductCategoryGetByIdService;
-import com.kamann.productCategory.domain.service.ProductCategoryRemoveService;
+import com.kamann.productCategory.domain.service.ProductCategoryDeleteService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,51 +15,48 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/categories")
 @RequiredArgsConstructor
-@Slf4j
 public class ProductCategoryController {
 
-    private final ProductCategoryRepository repository;
-    private final ProductCategoryGetByIdService getById;
-    private final ProductCategoryGetAsListService getAsList;
-    private final ProductCategoryRemoveService removeService;
+    private final ProductCategoryGetByIdService getByIdService;
+    private final ProductCategoryGetAsListService getAsListService;
+    private final ProductCategoryAddService addService;
+    private final ProductCategoryDeleteService deleteService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductCategoryDto> getCategoryById(@PathVariable Long id) {
-        if (getById.existsById(id))
-            return new ResponseEntity<>(getById.getProductCategoryDtoById(id), HttpStatus.OK);
+    public ResponseEntity<ProductCategoryDto> getProductCategoryById(@PathVariable Long id) {
+        if (getByIdService.existsById(id))
+            return new ResponseEntity<>(getByIdService.getProductCategoryDtoById(id), HttpStatus.FOUND);
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductCategoryDto>> getCategories() {
-        if (getAsList.getProductCategoryAsList().isEmpty())
+    public ResponseEntity<List<ProductCategoryDto>> getProductCategories() {
+        if (getAsListService.getProductCategoryAsList().isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
-            return new ResponseEntity<>(getAsList.getProductCategoryAsList(), HttpStatus.OK);
+            return new ResponseEntity<>(getAsListService.getProductCategoryAsList(), HttpStatus.FOUND);
     }
 
     @PostMapping
-    public ResponseEntity<ProductCategory> addProductCategory(@RequestBody ProductCategory category) {
-        repository.save(category);
-        return new ResponseEntity<>(category, HttpStatus.OK);
+    public ResponseEntity<ProductCategoryDto> addProductCategory(@RequestBody ProductCategoryDto dto) {
+        return new ResponseEntity<>(addService.add(dto), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ProductCategoryDto> removeProductCategory(@PathVariable Long id) {
-        if (removeService.removeIfIdExists(id))
-            return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
+    public ResponseEntity<ProductCategoryDto> deleteProductCategoryById(@PathVariable Long id) {
+        if (deleteService.removeIfIdExists(id))
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping
-    public ResponseEntity<ProductCategoryDto> removeAllProductCategories() {
-        if (removeService.productCategoryListIsEmpty())
+    public ResponseEntity<ProductCategoryDto> deleteAllProductCategories() {
+        if (deleteService.productCategoryListIsEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
-
 
     }
 }
