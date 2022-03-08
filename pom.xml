@@ -9,11 +9,11 @@
         <version>2.4.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.kamann</groupId>
-    <artifactId>kamann</artifactId>
+    <groupId>com.reservation-online</groupId>
+    <artifactId>reservation-online</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>kamann</name>
-    <description>Massage parlor project</description>
+    <name>reservation-online</name>
+    <description>Reservation online system</description>
     <properties>
         <java.version>11</java.version>
     </properties>

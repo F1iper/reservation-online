@@ -1,10 +1,7 @@
 package com.kamann.productCategory.controller;
 
 import com.kamann.productCategory.domain.dto.ProductCategoryDto;
-import com.kamann.productCategory.domain.service.ProductCategoryAddService;
-import com.kamann.productCategory.domain.service.ProductCategoryGetAsListService;
-import com.kamann.productCategory.domain.service.ProductCategoryGetByIdService;
-import com.kamann.productCategory.domain.service.ProductCategoryDeleteService;
+import com.kamann.productCategory.domain.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +18,7 @@ public class ProductCategoryController {
     private final ProductCategoryGetAsListService getAsListService;
     private final ProductCategoryAddService addService;
     private final ProductCategoryDeleteService deleteService;
+    private final ProductCategoryUpdateService updateService;
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductCategoryDto> getProductCategoryById(@PathVariable Long id) {
@@ -42,6 +40,12 @@ public class ProductCategoryController {
     public ResponseEntity<ProductCategoryDto> addProductCategory(@RequestBody ProductCategoryDto dto) {
         return new ResponseEntity<>(addService.add(dto), HttpStatus.CREATED);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductCategoryDto> updateProductCategory(@RequestBody ProductCategoryDto dto, @PathVariable Long id){
+        return new ResponseEntity<> (updateService.updateCategory(dto, id), HttpStatus.ACCEPTED);
+    }
+    //todo create resource if notExists - working, update resource that exists - not working
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ProductCategoryDto> deleteProductCategoryById(@PathVariable Long id) {
