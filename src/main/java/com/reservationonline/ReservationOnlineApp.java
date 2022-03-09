@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KamannApplication {
+public class ReservationOnlineApp {
     public static void main(String[] args) {
-        SpringApplication.run(KamannApplication.class, args);
+        SpringApplication.run(ReservationOnlineApp.class, args);
     }
 }
