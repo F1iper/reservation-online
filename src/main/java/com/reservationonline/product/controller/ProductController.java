@@ -1,10 +1,7 @@
 package com.reservationonline.product.controller;
 
 import com.reservationonline.product.domain.dto.ProductDto;
-import com.reservationonline.product.domain.service.ProductAddService;
-import com.reservationonline.product.domain.service.ProductDeleteService;
-import com.reservationonline.product.domain.service.ProductGetByIdService;
-import com.reservationonline.product.domain.service.ProductListService;
+import com.reservationonline.product.domain.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +17,7 @@ public class ProductController {
     private final ProductGetByIdService getByIdService;
     private final ProductListService getAsListService;
     private final ProductAddService addService;
+    private final ProductUpdateService updateService;
     private final ProductDeleteService deleteService;
 
     @GetMapping("/{id}")
