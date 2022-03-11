@@ -17,8 +17,8 @@ public class ProductCategoryController {
     private final ProductCategoryGetByIdService getByIdService;
     private final ProductCategoryGetAsListService getAsListService;
     private final ProductCategoryAddService addService;
-    private final ProductCategoryDeleteService deleteService;
     private final ProductCategoryUpdateService updateService;
+    private final ProductCategoryDeleteService deleteService;
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductCategoryDto> getProductCategoryById(@PathVariable Long id) {
@@ -42,10 +42,12 @@ public class ProductCategoryController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductCategoryDto> updateProductCategory(@RequestBody ProductCategoryDto dto, @PathVariable Long id){
-        return new ResponseEntity<> (updateService.updateCategory(dto, id), HttpStatus.ACCEPTED);
+    public ResponseEntity<ProductCategoryDto> updateProductCategory(@RequestBody ProductCategoryDto dto, @PathVariable Long id) {
+        if (updateService.updateCategory(dto, id))
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    //todo create resource if notExists - working, update resource that exists - not working
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ProductCategoryDto> deleteProductCategoryById(@PathVariable Long id) {

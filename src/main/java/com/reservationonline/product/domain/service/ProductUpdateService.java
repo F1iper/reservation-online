@@ -4,5 +4,7 @@ import com.reservationonline.product.domain.dto.ProductDto;
 
 public interface ProductUpdateService {
 
-    ProductDto update(ProductDto dto);
+    ProductDto update(ProductDto dto, Long id);
+
+    boolean ifExists(Long id);
 }

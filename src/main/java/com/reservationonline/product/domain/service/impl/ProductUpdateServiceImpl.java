@@ -15,17 +15,16 @@ public class ProductUpdateServiceImpl implements ProductUpdateService {
     private final ProductRepository repository;
     private final ModelMapper mapper;
 
+
     @Override
-    public ProductDto update(ProductDto dto) {
-        Product returnValue = new Product();
+    public ProductDto update(ProductDto dto, Long id) {
+        Product productFromDb = repository.getOne(id);
+        mapper.map(dto, productFromDb);
+        return mapper.map(productFromDb, ProductDto.class);
+    }
 
-        ProductDto productDto = new ProductDto();
-        mapper.map(dto, returnValue);
-
-        ProductDto updatedProduct = updateProduct(productDto, id);
-        mapper.map(updatedProduct, returnValue);
-
-        return returnValue;
-        //todo fix update product :] example -> https://www.appsdeveloperblog.com/putmapping-spring-mvc/
+    @Override
+    public boolean ifExists(Long id) {
+        return repository.existsById(id);
     }
 }

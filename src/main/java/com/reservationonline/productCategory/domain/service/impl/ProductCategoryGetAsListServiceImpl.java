@@ -22,12 +22,12 @@ public class ProductCategoryGetAsListServiceImpl implements ProductCategoryGetAs
     private final ModelMapper mapper;
 
     @Override
+    //todo there are 4 queries when there is 1 resource -> fix that :]
     public List<ProductCategoryDto> getProductCategoryAsList() {
         if (listIsEmpty(repository.findAll()))
             return new ArrayList<>();
         else {
-            List<ProductCategory> theList = new ArrayList<>();
-            theList.addAll(repository.findAll());
+            List<ProductCategory> theList = repository.findAll();
             Stream<ProductCategoryDto> mappedList = theList.stream()
                     .map(productCategory -> mapper.map(productCategory, ProductCategoryDto.class));
             return mappedList.collect(Collectors.toList());

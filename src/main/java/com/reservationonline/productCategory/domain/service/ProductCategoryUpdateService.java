@@ -4,5 +4,5 @@ import com.reservationonline.productCategory.domain.dto.ProductCategoryDto;
 
 public interface ProductCategoryUpdateService {
 
-    ProductCategoryDto updateCategory(ProductCategoryDto dto, Long id);
+    boolean updateCategory(ProductCategoryDto dto, Long id);
 }
