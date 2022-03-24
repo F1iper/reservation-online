@@ -1,5 +1,6 @@
 package com.reservationonline.client.domain.entitty;
 
+import com.reservationonline.client.domain.enums.Status;
 import lombok.*;
 import org.springframework.lang.Nullable;
 
@@ -17,18 +18,15 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Nullable
+
     private String firstName;
-    @Nullable
     private String lastname;
-    @Nullable
     private Date createdAt;
-    @Nullable
     private String password;
-    @Nullable
     private String pesel;
-    @Nullable
     private String sex;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @OneToOne
     private Address address;
