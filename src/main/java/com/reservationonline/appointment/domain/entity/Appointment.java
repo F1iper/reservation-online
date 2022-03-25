@@ -33,9 +33,12 @@ public class Appointment {
     private Client client;
 
     @ManyToMany
+    @JoinTable(name = "appointment_employee",
+            joinColumns = @JoinColumn(name = "fk_appointment"),
+            inverseJoinColumns = @JoinColumn(name = "fk_employee"))
     private Set<Employee> employees;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "appointments")
     private Set<Service> services;
 
 }

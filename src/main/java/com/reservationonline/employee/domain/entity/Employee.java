@@ -1,6 +1,9 @@
 package com.reservationonline.employee.domain.entity;
 
 import com.reservationonline.appointment.domain.entity.Appointment;
+import com.reservationonline.client.domain.entity.Address;
+import com.reservationonline.service.domain.entity.Service;
+import com.reservationonline.user.entity.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,10 +27,16 @@ public class Employee {
     private String email;
     private String password;
 
-    //one to one -> USER
-    //one to one -> ADDRESS
-    //many to one -> CATEGORY
-    //many to many -> SERVICE
-    //many to many -> APPOINTMENT
+    @OneToOne
+    private User user;
+
+    @OneToOne
+    private Address address;
+
+    @ManyToMany(mappedBy = "employees")
+    private Set<Appointment> appointment;
+
+    @ManyToMany(mappedBy = "employees")
+    private Set<Service> service;
 
 }

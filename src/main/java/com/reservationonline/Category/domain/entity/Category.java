@@ -1,8 +1,10 @@
 package com.reservationonline.Category.domain.entity;
 
+import com.reservationonline.service.domain.entity.Service;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -18,7 +20,7 @@ public class Category {
 
     private String name;
 
-    //many to many -> CATEGORY
-
+    @OneToMany(mappedBy = "category")
+    private Set<Service> services;
 
 }

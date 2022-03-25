@@ -1,6 +1,8 @@
 package com.reservationonline.service.domain.entity;
 
+import com.reservationonline.Category.domain.entity.Category;
 import com.reservationonline.appointment.domain.entity.Appointment;
+import com.reservationonline.employee.domain.entity.Employee;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,14 +26,20 @@ public class Service {
     private Boolean discount;
     private Integer length;
 
-    @ManyToMany
-    private Set<Appointment> appointments;
-
     @ManyToOne
-    private Category
-    //many to many -> APPOINTMENT
-    //many to one -> CATEGORY
-    //mane to many -> EMPLOYEE
+    private Category category;
+
+    @ManyToMany
+    @JoinTable(name = "service_employee",
+            joinColumns = @JoinColumn(name = "fk_service"),
+            inverseJoinColumns = @JoinColumn(name = "fk_employee"))
+    private Set<Employee> employees;
+
+    @ManyToMany
+    @JoinTable(name = "service_appointments",
+            joinColumns = @JoinColumn(name = "fk_service"),
+            inverseJoinColumns = @JoinColumn(name = "fk_appointment"))
+    private Set<Appointment> appointments;
 
 
 }

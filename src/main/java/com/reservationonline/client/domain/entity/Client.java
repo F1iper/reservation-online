@@ -30,16 +30,18 @@ public class Client {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @OneToMany
+    @JoinColumn(name = "client_id")
+    private Set<Appointment> appointments;
+
     @OneToOne(mappedBy = "client")
     private Address address;
 
     @OneToMany(mappedBy = "client")
-    private Set<Appointment> appointments;
-
-    @OneToMany(mappedBy = "client")
     private Set<History> histories;
 
-    @OneToOne
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private User user;
 
 }
