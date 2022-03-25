@@ -1,6 +1,6 @@
 package com.reservationonline.client.domain.mapper.impl;
 
-import com.reservationonline.client.domain.entitty.Client;
+import com.reservationonline.client.domain.entity.Client;
 import com.reservationonline.client.domain.dto.ClientDto;
 import com.reservationonline.client.domain.mapper.ClientMapper;
 import lombok.RequiredArgsConstructor;

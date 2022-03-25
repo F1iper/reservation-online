@@ -1,7 +1,7 @@
 package com.reservationonline.client.domain.mapper.impl;
 
 import com.reservationonline.client.domain.dto.AddressDto;
-import com.reservationonline.client.domain.entitty.Address;
+import com.reservationonline.client.domain.entity.Address;
 import com.reservationonline.client.domain.mapper.AddressMapper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

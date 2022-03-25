@@ -1,7 +1,7 @@
 package com.reservationonline.client.domain.mapper;
 
 import com.reservationonline.client.domain.dto.ClientDto;
-import com.reservationonline.client.domain.entitty.Client;
+import com.reservationonline.client.domain.entity.Client;
 
 public interface ClientMapper {
 

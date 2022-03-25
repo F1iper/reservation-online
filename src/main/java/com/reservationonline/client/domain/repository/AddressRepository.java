@@ -1,6 +1,6 @@
 package com.reservationonline.client.domain.repository;
 
-import com.reservationonline.client.domain.entitty.Address;
+import com.reservationonline.client.domain.entity.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

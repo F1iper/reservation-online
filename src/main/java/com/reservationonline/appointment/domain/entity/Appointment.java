@@ -1,10 +1,13 @@
 package com.reservationonline.appointment.domain.entity;
 
-import com.reservationonline.product.domain.entity.Product;
+import com.reservationonline.appointment.domain.enums.Payment;
+import com.reservationonline.client.domain.entity.Client;
+import com.reservationonline.employee.domain.entity.Employee;
+import com.reservationonline.service.domain.entity.Service;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -21,9 +24,18 @@ public class Appointment {
 
     private String description;
 
-    private LocalDate date;
+    private LocalDateTime date;
 
-    @OneToMany(mappedBy = "appointment")
-    public Set<Product> products;
+    @Enumerated(EnumType.STRING)
+    private Payment paymentStatus;
+
+    @ManyToOne
+    private Client client;
+
+    @ManyToMany
+    private Set<Employee> employees;
+
+    @ManyToMany
+    private Set<Service> services;
 
 }

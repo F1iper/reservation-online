@@ -1,11 +1,10 @@
 package com.reservationonline.employee.domain.entity;
 
+import com.reservationonline.appointment.domain.entity.Appointment;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -20,12 +19,15 @@ public class Employee {
     private Long id;
 
     private String firstName;
-
     private String lastname;
-
     private String login;
-
     private String email;
-
     private String password;
+
+    //one to one -> USER
+    //one to one -> ADDRESS
+    //many to one -> CATEGORY
+    //many to many -> SERVICE
+    //many to many -> APPOINTMENT
+
 }
