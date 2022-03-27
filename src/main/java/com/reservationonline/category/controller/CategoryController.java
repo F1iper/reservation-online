@@ -1,7 +1,7 @@
-package com.reservationonline.Category.controller;
+package com.reservationonline.category.controller;
 
-import com.reservationonline.Category.domain.dto.CategoryDto;
-import com.reservationonline.Category.domain.service.*;
+import com.reservationonline.category.domain.dto.CategoryDto;
+import com.reservationonline.category.domain.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

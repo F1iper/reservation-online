@@ -1,7 +1,7 @@
-package com.reservationonline.Category.domain.mapper;
+package com.reservationonline.category.domain.mapper;
 
-import com.reservationonline.Category.domain.dto.CategoryDto;
-import com.reservationonline.Category.domain.entity.Category;
+import com.reservationonline.category.domain.dto.CategoryDto;
+import com.reservationonline.category.domain.entity.Category;
 
 public interface CategoryMapper {
 

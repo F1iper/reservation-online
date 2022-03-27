@@ -1,4 +1,4 @@
-package com.reservationonline.Category.domain.service;
+package com.reservationonline.category.domain.service;
 
 public interface CategoryDeleteService {
 

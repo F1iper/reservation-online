@@ -1,6 +1,6 @@
-package com.reservationonline.Category.domain.service;
+package com.reservationonline.category.domain.service;
 
-import com.reservationonline.Category.domain.dto.CategoryDto;
+import com.reservationonline.category.domain.dto.CategoryDto;
 
 public interface CategoryAddService {
 

@@ -1,4 +1,4 @@
-package com.reservationonline.Category.domain.dto;
+package com.reservationonline.category.domain.dto;
 
 import lombok.*;
 

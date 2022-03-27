@@ -1,7 +1,7 @@
-package com.reservationonline.Category.domain.service.impl;
+package com.reservationonline.category.domain.service.impl;
 
-import com.reservationonline.Category.domain.repository.CategoryRepository;
-import com.reservationonline.Category.domain.service.CategoryDeleteService;
+import com.reservationonline.category.domain.repository.CategoryRepository;
+import com.reservationonline.category.domain.service.CategoryDeleteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

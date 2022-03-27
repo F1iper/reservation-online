@@ -1,6 +1,6 @@
 package com.reservationonline.service.domain.entity;
 
-import com.reservationonline.Category.domain.entity.Category;
+import com.reservationonline.category.domain.entity.Category;
 import com.reservationonline.appointment.domain.entity.Appointment;
 import com.reservationonline.employee.domain.entity.Employee;
 import lombok.*;

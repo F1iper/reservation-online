@@ -1,6 +1,6 @@
-package com.reservationonline.Category.domain.repository;
+package com.reservationonline.category.domain.repository;
 
-import com.reservationonline.Category.domain.entity.Category;
+import com.reservationonline.category.domain.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

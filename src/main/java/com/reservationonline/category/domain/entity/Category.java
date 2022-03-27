@@ -1,4 +1,4 @@
-package com.reservationonline.Category.domain.entity;
+package com.reservationonline.category.domain.entity;
 
 import com.reservationonline.service.domain.entity.Service;
 import lombok.*;
