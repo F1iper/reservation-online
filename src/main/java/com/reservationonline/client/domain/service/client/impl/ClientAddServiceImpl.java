@@ -15,11 +15,11 @@ public class ClientAddServiceImpl implements ClientAddService {
 
     private final ClientRepository repository;
     private final ClientMapper mapper;
-    private final BCryptPasswordEncoder encoder;
+//    private final BCryptPasswordEncoder encoder;
 
     @Override
     public ClientDto add(ClientDto clientDto) {
-        clientDto.setPassword(encoder.encode(clientDto.getPassword()));
+//        clientDto.setPassword(encoder.encode(clientDto.getPassword()));
         Client savedClient = repository.save(mapper.ClientDtoToClient(clientDto));
         return mapper.clientToClientDto(savedClient);
     }
