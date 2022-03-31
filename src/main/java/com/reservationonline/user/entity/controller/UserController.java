@@ -2,9 +2,11 @@ package com.reservationonline.user.entity.controller;
 
 import com.reservationonline.user.entity.User;
 import com.reservationonline.user.entity.repository.UserRepository;
+import com.reservationonline.user.service.UserGetAsListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +15,11 @@ import java.util.List;
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class UserController {
+
+    private final UserGetAsListService getAsList;
+//    private final UserGetById getById;
+//    private final UserAddService add;
+//    private final UserRemoveService remove;
 
     private final UserRepository repository;
 
