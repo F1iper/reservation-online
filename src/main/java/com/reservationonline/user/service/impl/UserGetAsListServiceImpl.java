@@ -1,7 +1,7 @@
 package com.reservationonline.user.service.impl;
 
-import com.reservationonline.user.entity.dto.UserDto;
-import com.reservationonline.user.entity.repository.UserRepository;
+import com.reservationonline.user.dto.UserDto;
+import com.reservationonline.user.repository.UserRepository;
 import com.reservationonline.user.service.UserGetAsListService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

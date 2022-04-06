@@ -1,4 +1,4 @@
-package com.reservationonline.user.entity.dto;
+package com.reservationonline.user.dto;
 
 import com.reservationonline.client.domain.entity.Client;
 import com.reservationonline.employee.domain.entity.Employee;

@@ -1,5 +1,6 @@
 package com.reservationonline.appointment.domain.dto;
 
+import com.reservationonline.appointment.domain.enums.Payment;
 import com.reservationonline.client.domain.entity.Client;
 import com.reservationonline.employee.domain.entity.Employee;
 import lombok.*;
@@ -18,4 +19,5 @@ public class AppointmentDto {
     private LocalDateTime date;
     private Employee employee;
     private Client client;
+    private Payment paymentStatus;
 }
