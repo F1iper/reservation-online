@@ -4,7 +4,7 @@
 
 ## Technology stack
 
-* Java 17
+* Java 11
 * Spring Boot
 * Hibernate
 * Maven
@@ -16,6 +16,11 @@
 
 ---
 ## Future features
+* Implement Spring Security
+* Implement register + login
+* Implement JMS for the user
+* Implement JMS for the employee
+* 
 
 ---
 ## REST API Documentation:
@@ -28,4 +33,4 @@ Not available yet. :]
 
 ---
 ### Status
-Project is in progress.
+Project is under development.
