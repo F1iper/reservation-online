@@ -36,4 +36,7 @@ Not available yet. :]
 ### Status
 Project is under development.
 
-https://github.com/F1iper/reservation-online/blob/main/confirmation.mp4
+
+https://user-images.githubusercontent.com/59711082/163060229-e355ba54-2b22-4a78-a6b2-97b593a148dd.mp4
+
+
