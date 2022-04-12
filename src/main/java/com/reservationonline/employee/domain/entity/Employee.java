@@ -3,7 +3,7 @@ package com.reservationonline.employee.domain.entity;
 import com.reservationonline.appointment.domain.entity.Appointment;
 import com.reservationonline.client.domain.entity.Address;
 import com.reservationonline.service.domain.entity.Service;
-import com.reservationonline.user.entity.User;
+import com.reservationonline.user.User;
 import lombok.*;
 
 import javax.persistence.*;

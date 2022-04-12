@@ -2,7 +2,7 @@ package com.reservationonline.client.domain.entity;
 
 import com.reservationonline.appointment.domain.entity.Appointment;
 import com.reservationonline.client.domain.enums.Status;
-import com.reservationonline.user.entity.User;
+import com.reservationonline.user.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -39,9 +39,5 @@ public class Client {
 
     @OneToMany(mappedBy = "client")
     private Set<History> histories;
-
-    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private User user;
 
 }
