@@ -13,13 +13,14 @@
 * MySQL
 * Spring Security
 * Swagger UI
+* Maildev
 
 ---
+## Features
+* Create user using confirmation token send by email
+* 
+
 ## Future features
-* Implement Spring Security
-* Implement register + login
-* Implement JMS for the user
-* Implement JMS for the employee
 * 
 
 ---
